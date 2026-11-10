@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>1uglysaint — Przesłuchanie · Dziennik</title>
+  <meta name="description" content="Przesłuchaj maskę 1uglysaint: wysyłka, zwroty i kontakt.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta property="og:type" content="website"><meta property="og:site_name" content="1uglysaint">
+  <meta property="og:title" content="1uglysaint — Przesłuchanie"><meta property="og:description" content="Zadaj pytanie. On odpowie.">
+  <meta property="og:image" content="https://1uglysaint.online/assets/og-image.jpg"><meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/fonts/SaintSpire-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="pages.css?v=21">
+  <link rel="stylesheet" href="dziennik.css?v=21">
+  <script>if (location.protocol === 'file:') document.write('<script src="assets/masks/offline.js"><\/script>');</script>
+  <script src="products.js?v=21" defer></script>
+  <script src="assets/masks/geo.js?v=21" defer></script>
+  <script src="script.js?v=21" defer></script>
+  <script src="atmos.js?v=21" defer></script>
+  <script src="pages.js?v=21" defer></script>
+  <script src="sala.js?v=21" defer></script>
+  <script src="dziennik.js?v=21" defer></script>
+  <link rel="stylesheet" href="koszyk.css?v=21">
+</head>
+<body class="pg pg-dz" data-lamp="off">
+  <div class="px" aria-hidden="true"><canvas class="px-noise" width="160" height="90"></canvas><i class="px-line"></i><span class="px-label">UTRATA SYGNAŁU</span></div>
+  <header class="pn">
+    <a class="pn-logo" href="index.html" aria-label="1uglysaint — start"><img src="assets/1uglysaint-logo.svg" alt="1uglysaint"></a>
+    <nav class="pn-links" aria-label="Menu">
+      <a href="sklep.html">Sklep</a>
+      <a href="dziennik.html">Dziennik</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+    <button type="button" class="task-cart" data-modal="cart" aria-label="Otwórz koszyk"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14l-1.6 11H6.6z"/><path d="M9 9V7a3 3 0 0 1 6 0v2"/></svg> KOSZYK <b id="task-cart-count">0</b></button>
+  </header>
+
+  <main class="room" id="room" aria-label="Pokój przesłuchań">
+    <canvas class="room-gl" id="room-gl" aria-hidden="true"></canvas>
+    <img class="room-still" id="room-still" alt="" hidden>
+    <div class="room-anchor" id="room-anchor" aria-hidden="true"></div>
+
+    <!-- the lamp over the table: swings, flickers, you can push it -->
+    <div class="lampx" id="lampx" aria-hidden="true">
+      <i class="lx-cord"></i>
+      <span class="lx-head" id="lx-head"><i class="lx-cone"></i><i class="lx-shade"></i><i class="lx-bulb"></i></span>
+    </div>
+
+    <div class="osd mono" aria-hidden="true">
+      <p class="osd-l"><i class="rec"></i>REC <span class="osd-sep">·</span> PRZESŁUCHANIE NR 66 <span class="osd-sep">·</span> <span class="osd-cam">KAMERA 2</span></p>
+      <p class="osd-r"><span id="osd-tc">00:00:00:00</span><span id="osd-date"></span></p>
+    </div>
+
+    <section class="side" aria-labelledby="side-h">
+      <p class="side-k mono">DZIENNIK <span>/</span> AKTA 1US/66</p>
+      <h1 class="side-h" id="side-h">Zadaj<br>pytanie.</h1>
+      <p class="side-s">On odpowie. Wysyłka, zwroty, kontakt.</p>
+      <ol class="qs" id="qs" aria-label="Pytania"></ol>
+    </section>
+
+    <div class="subs" id="subs" aria-live="polite">
+      <p class="sub-who mono" id="sub-who"></p>
+      <p class="sub-t"><span id="sub-t"></span></p>
+      <p class="sub-note" id="sub-note" hidden></p>
+      <div class="sub-cta" id="sub-cta"></div>
+    </div>
+
+    <div class="suspect mono">
+      <span class="sus-k">PRZESŁUCHIWANY</span>
+      <b id="sus-name">—</b>
+      <button type="button" id="sus-next" aria-label="Przesłuchaj innego podejrzanego">⟳ INNY</button>
+      <a id="sus-try" href="sklep.html">PRZYMIERZ →</a>
+    </div>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

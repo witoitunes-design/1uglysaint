@@ -1,0 +1,105 @@
+/* index: page transition + hero as the only screen */
+/* ---------- TV transition ---------- */
+.px{position:fixed;inset:0;z-index:300;pointer-events:none}
+.px::before,.px::after{content:'';position:absolute;left:0;right:0;height:50.5%;background:#000;z-index:1}
+.px::before{top:0}.px::after{bottom:0}
+.px.done{display:none}
+.px-noise{position:absolute;inset:0;z-index:2;width:100%;height:100%;image-rendering:pixelated;opacity:0;mix-blend-mode:screen}
+.px-line{position:absolute;z-index:3;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:#fff6ec;box-shadow:0 0 22px 5px rgba(255,220,190,.75);opacity:0}
+.px-label{position:absolute;z-index:3;left:50%;top:calc(50% + 28px);translate:-50% 0;font:11px ui-monospace,Consolas,monospace;letter-spacing:6px;color:rgba(232,214,201,.75);opacity:0;white-space:nowrap}
+/* switch on: a line appears, then the picture opens from it */
+.px,.px.replay{animation:pxHold .9s linear both}
+.px::before,.px.replay::before{animation:pxTopOpen .9s cubic-bezier(.7,0,.2,1) both}
+.px::after,.px.replay::after{animation:pxBotOpen .9s cubic-bezier(.7,0,.2,1) both}
+.px .px-line,.px.replay .px-line{animation:pxLineOn .9s ease both}
+.px .px-noise,.px.replay .px-noise{animation:pxNoiseOn .9s ease both}
+@keyframes pxHold{to{opacity:1}}
+@keyframes pxTopOpen{0%,32%{transform:translateY(0)}100%{transform:translateY(-101%)}}
+@keyframes pxBotOpen{0%,32%{transform:translateY(0)}100%{transform:translateY(101%)}}
+@keyframes pxLineOn{0%{opacity:0;transform:scaleX(0)}24%{opacity:1;transform:scaleX(1)}40%{opacity:1}70%{opacity:0}100%{opacity:0}}
+@keyframes pxNoiseOn{0%,30%{opacity:0}45%{opacity:.4}100%{opacity:0}}
+/* leave: interference over the page, the picture closes into a line, the line dies */
+.px.leave{display:block;pointer-events:all;animation:none}
+.px.leave::before{animation:pxTopClose .62s cubic-bezier(.7,0,.3,1) both}
+.px.leave::after{animation:pxBotClose .62s cubic-bezier(.7,0,.3,1) both}
+.px.leave .px-noise{animation:pxNoiseOut .62s steps(8) both}
+.px.leave .px-line{animation:pxLineOut .62s cubic-bezier(.7,0,.3,1) both}
+.px.leave .px-label{animation:pxLabel .62s steps(1) both}
+@keyframes pxTopClose{0%,20%{transform:translateY(-101%)}62%,100%{transform:translateY(0)}}
+@keyframes pxBotClose{0%,20%{transform:translateY(101%)}62%,100%{transform:translateY(0)}}
+@keyframes pxNoiseOut{0%{opacity:.15}30%{opacity:.55}60%{opacity:.4}70%,100%{opacity:0}}
+@keyframes pxLineOut{0%,58%{opacity:0;transform:scaleX(1)}66%{opacity:1;transform:scaleX(1)}92%{opacity:1;transform:scaleX(.004)}100%{opacity:0;transform:scaleX(0)}}
+@keyframes pxLabel{0%{opacity:0}15%{opacity:1}30%{opacity:.2}38%{opacity:1}56%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.px{display:none!important}}
+
+
+body.solo{overflow:hidden;height:100svh}
+.solo .s-hero{height:100svh!important;min-height:0!important}
+.solo .cine-nav.hidden{transform:none}
+
+/* ---------- rooms: three CCTV monitors (the hero is a camera feed already) ---------- */
+.hero-cams{position:absolute;z-index:4;right:clamp(16px,3vw,40px);bottom:clamp(22px,4.5vh,46px);margin:0}
+.hc-k{display:flex;align-items:center;gap:10px;margin:0 0 12px;font:10px var(--mono);letter-spacing:.3em;color:rgba(232,214,201,.62)}
+.hc-k i{width:6px;height:6px;border-radius:50%;background:#d0303c;box-shadow:0 0 8px #d0303c;animation:blink 1.2s steps(1) infinite}
+.hc-row{display:flex;gap:14px}
+.cam{position:relative;display:block;width:clamp(150px,12.4vw,196px);color:var(--bone);text-decoration:none;outline:none}
+.cam-scr{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:#000;border:1px solid rgba(232,214,201,.16);border-radius:4px;box-shadow:0 0 0 5px rgba(10,8,8,.92),0 0 0 6px rgba(232,214,201,.07),0 24px 40px rgba(0,0,0,.65);transition:border-color .35s,box-shadow .35s}
+.cam-scr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.62) contrast(1.15) saturate(.35);transform:scale(1.06);transition:filter .5s,transform .9s cubic-bezier(.2,.75,.15,1)}
+.cam-noise{position:absolute;inset:0;z-index:1;width:100%;height:100%;image-rendering:pixelated;opacity:.3;mix-blend-mode:screen;transition:opacity .45s}
+.cam-scr::before{content:'';position:absolute;inset:0;z-index:2;background:repeating-linear-gradient(0deg,rgba(0,0,0,.38) 0 1px,transparent 1px 3px);pointer-events:none}
+.cam-scr::after{content:'';position:absolute;inset:0;z-index:3;background:linear-gradient(118deg,transparent 38%,rgba(255,255,255,.07) 48%,transparent 58%),radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.7));pointer-events:none}
+.cam-osd{position:absolute;z-index:4;left:8px;right:8px;top:6px;display:flex;justify-content:space-between;align-items:center;font:8px var(--mono);letter-spacing:.16em;color:rgba(255,255,255,.78);text-shadow:0 1px 1px #000}
+.cam-osd b{font-weight:400}
+.cam-osd span{display:flex;align-items:center;gap:4px}
+.cam-osd i{width:5px;height:5px;border-radius:50%;background:#ff3b45;box-shadow:0 0 6px #ff3b45;animation:blink 1.2s steps(1) infinite}
+.cam-lbl{display:grid;gap:4px;margin-top:12px;padding-left:2px}
+.cam-lbl b{font:400 clamp(22px,1.75vw,28px)/1 "SaintSpire",Georgia,serif;font-weight:normal;letter-spacing:.01em;transition:color .3s,transform .5s cubic-bezier(.2,.75,.15,1)}
+.cam-lbl small{font:9px var(--mono);letter-spacing:.2em;color:rgba(232,214,201,.48);text-transform:uppercase;white-space:nowrap}
+.cam-lbl b::after{content:' →';font:14px var(--mono);color:rgba(232,214,201,.0);transition:color .3s}
+.cam:hover .cam-scr img,.cam:focus-visible .cam-scr img{filter:brightness(.98) contrast(1.06) saturate(.85);transform:scale(1)}
+.cam:hover .cam-noise,.cam:focus-visible .cam-noise{opacity:.07}
+.cam:hover .cam-scr,.cam:focus-visible .cam-scr{border-color:rgba(255,80,90,.7);box-shadow:0 0 0 5px rgba(10,8,8,.92),0 0 0 6px rgba(255,80,90,.25),0 0 40px rgba(255,60,70,.18),0 24px 40px rgba(0,0,0,.65)}
+.cam:hover .cam-lbl b,.cam:focus-visible .cam-lbl b{color:#fff;transform:translateX(3px)}
+.cam:hover .cam-lbl b::after,.cam:focus-visible .cam-lbl b::after{color:#ff5a62}
+.cam.tune .cam-scr img{animation:camTune .38s steps(3)}
+@keyframes camTune{0%{transform:translateX(7px) scale(1.05)}33%{transform:translateX(-6px) skewX(5deg)}66%{transform:translate(3px,-2px)}100%{transform:none}}
+@media(max-width:1100px) and (min-width:821px){.cam{width:clamp(130px,15vw,170px)}.hc-row{gap:10px}}
+@media(max-width:820px){
+  .hero-pitch{bottom:212px}
+  .hp-cta{display:none}
+  .hero-cams{left:14px;right:14px;bottom:max(14px,env(safe-area-inset-bottom))}
+  .hc-k{margin-bottom:8px;font-size:8px;letter-spacing:.24em}
+  .hc-row{gap:9px}
+  .cam{flex:1 1 0;width:auto}
+  .cam-scr{box-shadow:0 0 0 3px rgba(10,8,8,.92),0 0 0 4px rgba(232,214,201,.07),0 14px 24px rgba(0,0,0,.6)}
+  .cam-scr img{filter:brightness(.62) contrast(1.12) saturate(.5)}
+  .cam-noise{opacity:.24}
+  .cam-osd{left:5px;right:5px;top:4px;font-size:7px;letter-spacing:.1em}
+  .cam-osd span{display:none}
+  .cam-lbl{margin-top:8px}
+  .cam-lbl b{font-size:20px}
+  .cam-lbl small{font-size:7px;letter-spacing:.14em}
+}
+@media (prefers-reduced-motion:reduce){.cam.tune .cam-scr img{animation:none}}
+
+/* ---------- credit: made by MKFlow ---------- */
+.mk-credit{position:fixed;z-index:65;right:9px;top:50%;display:flex;align-items:center;gap:10px;padding:8px 3px;writing-mode:vertical-rl;transform:translateY(-50%) rotate(180deg);font:9px var(--mono);letter-spacing:.3em;color:rgba(232,214,201,.5);text-decoration:none;transition:color .25s}
+.mk-credit::after{content:'';width:1px;height:34px;background:linear-gradient(180deg,rgba(232,214,201,.4),transparent)}
+.mk-credit b{font-weight:400;font-size:10px;color:rgba(236,229,220,.92);transition:color .25s,letter-spacing .4s}
+.mk-credit i{font-style:normal;color:#d0303c}
+.mk-credit:hover,.mk-credit:focus-visible{color:rgba(232,214,201,.7)}
+.mk-credit:hover b,.mk-credit:focus-visible b{color:#fff;letter-spacing:.44em}
+.mk-nav{display:none}
+@media (max-width:820px){
+  .mk-credit{display:none}
+  .pn-links .mk-nav{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:4px 6px;font:9px var(--mono);letter-spacing:.16em;color:rgba(236,229,220,.8);text-decoration:none;border-left:1px solid rgba(232,214,201,.14)}
+  .pn-links .mk-nav small{font-size:7px;letter-spacing:.12em;color:rgba(232,214,201,.45)}
+  .pn-links .mk-nav::after{display:none}
+}
+@media (max-width:820px){
+  .solo .mk-credit{display:flex;writing-mode:horizontal-tb;transform:none;top:auto;right:auto;left:50%;bottom:max(7px,env(safe-area-inset-bottom));translate:-50% 0;gap:7px;padding:3px 8px;font-size:8px;letter-spacing:.2em;white-space:nowrap}
+  .solo .mk-credit b{font-size:9px}
+  .solo .mk-credit::after{display:none}
+  .hero-cams{bottom:max(30px,calc(env(safe-area-inset-bottom) + 22px))}
+  .hero-pitch{bottom:230px}
+}

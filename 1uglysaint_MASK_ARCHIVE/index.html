@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#110809">
+  <meta name="description" content="1uglysaint — maski. Drop 001: SINISTER, KROWN i NAILED. Maski do obejrzenia w 3D i przymierzenia na własnej twarzy.">
+  <title>1uglysaint — MASK ARCHIVE</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/SaintSpire-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="1uglysaint">
+  <meta property="og:title" content="1uglysaint — MASK ARCHIVE">
+  <meta property="og:description" content="Maski 1uglysaint. Drop 001 — obejrzyj w 3D i przymierz na sobie.">
+  <meta property="og:image" content="https://1uglysaint.online/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/hero-preview-bw.webp" as="image">
+  <link rel="stylesheet" href="style.css?v=21">
+  <link rel="stylesheet" href="cine.css?v=21">
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="products.js?v=21" defer></script>
+  <script src="script.js?v=21" defer></script>
+  <script src="intro.js?v=21" defer></script>
+  <script src="gl.js?v=21" defer></script>
+  <script src="atmos.js?v=21" defer></script>
+  <script src="cine.js?v=21" defer></script>
+  <script src="pages.js?v=21" defer></script>
+  <link rel="stylesheet" href="pages-index.css?v=21">
+  <link rel="stylesheet" href="koszyk.css?v=21">
+</head>
+<body class="cine solo">
+  <div class="px" aria-hidden="true"><canvas class="px-noise" width="160" height="90"></canvas><i class="px-line"></i><span class="px-label">UTRATA SYGNAŁU</span></div>
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="in-screen">
+    <canvas></canvas>
+    <pre class="in-log"></pre>
+    <div class="in-word"></div>
+    <div class="in-calm"><p class="in-calm-big">WITAJ W ARCHIWUM.</p><p class="in-calm-sub">1uglysaint · maski · drop 001</p></div>
+    <div class="in-hud"><span class="in-rec"><i></i>REC</span><span class="in-tc">00:03:10:00</span></div>
+    <div class="in-foot"><button type="button" class="in-sound">DŹWIĘK: OFF</button><button type="button" class="in-skip">POMIŃ ↵</button></div>
+    <div class="in-frame" aria-hidden="true"><b></b><b></b><b></b><b></b></div>
+    </div>
+    <i class="in-scan" aria-hidden="true"></i>
+  </div>
+  <div class="cursor" aria-hidden="true"><div class="cursor-dot"></div><div class="cursor-ring"><span class="cursor-label"></span></div></div>
+  <canvas id="gl" aria-hidden="true" data-textures="assets/hero-preview-bw.webp"></canvas>
+  <div class="gl-fallback" aria-hidden="true"></div>
+
+  <header class="cine-nav">
+    <a href="#top" class="cn-logo" aria-label="1uglysaint — na górę"><img src="assets/1uglysaint-logo.svg" alt="1uglysaint"></a>
+    <nav class="cn-links" aria-label="Sekcje">
+      <a href="sklep.html" class="magnet"><span>Sklep</span></a>
+      <a href="dziennik.html" class="magnet"><span>Dziennik</span></a>
+      <a href="kontakt.html" class="magnet"><span>Kontakt</span></a>
+    </nav>
+    <button type="button" class="task-cart cn-cart magnet" data-modal="cart" aria-label="Otwórz koszyk"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14l-1.6 11H6.6z"/><path d="M9 9V7a3 3 0 0 1 6 0v2"/></svg> KOSZYK <b id="task-cart-count">0</b></button>
+  </header>
+
+  <main id="main">
+    <section class="s-hero" id="top" aria-label="1uglysaint">
+      <div class="hud" aria-hidden="true">
+        <span class="hud-a"><i class="hud-rec"></i>REC · CAM_01 · POKÓJ B</span>
+        <span class="hud-b" id="hud-time">--:--:--</span>
+        <span class="hud-d">ARCHIWUM · POZIOM −2</span>
+      </div>
+      <h1 class="hero-title" aria-label="1uglysaint"><span class="ht-line" data-split>1UGLY</span><span class="ht-line ht-2" data-split>SAINT</span></h1>
+      <div class="hero-pitch">
+        <p class="hp-k">MASKI · DROP 001</p>
+        <p class="hp-big">PRZYMIERZ NA SOBIE.</p>
+        <p class="hp-sub"><span id="hp-count">3</span> <span id="hp-noun">maski</span> · w 3D · od <b id="hp-from">289 zł</b></p>
+        <div class="hp-cta">
+          <a href="sklep.html" class="outline-button pd-buy magnet hp-shop">ZOBACZ MASKI <span>→</span></a>
+          <span class="hp-hint">poruszaj kursorem — jesteś światłem</span>
+        </div>
+      </div>
+      <nav class="hero-cams" aria-label="Pokoje">
+        <p class="hc-k"><i aria-hidden="true"></i>MONITORING · WYBIERZ KAMERĘ</p>
+        <div class="hc-row">
+          <a href="sklep.html" class="cam" data-cam>
+            <span class="cam-scr" aria-hidden="true"><img src="assets/hero/ch-sklep.webp" alt="" draggable="false"><canvas class="cam-noise" width="80" height="50"></canvas><span class="cam-osd"><b>CAM 01</b><span><i></i>REC</span></span></span>
+            <span class="cam-lbl"><b>Sklep</b><small>przymierzalnia · <span id="hc-count">3</span> maski</small></span>
+          </a>
+          <a href="dziennik.html" class="cam" data-cam>
+            <span class="cam-scr" aria-hidden="true"><img src="assets/hero/ch-dziennik.webp" alt="" draggable="false"><canvas class="cam-noise" width="80" height="50"></canvas><span class="cam-osd"><b>CAM 02</b><span><i></i>REC</span></span></span>
+            <span class="cam-lbl"><b>Dziennik</b><small>przesłuchanie</small></span>
+          </a>
+          <a href="kontakt.html" class="cam" data-cam>
+            <span class="cam-scr" aria-hidden="true"><img src="assets/hero/ch-kontakt.webp" alt="" draggable="false"><canvas class="cam-noise" width="80" height="50"></canvas><span class="cam-osd"><b>CAM 03</b><span><i></i>REC</span></span></span>
+            <span class="cam-lbl"><b>Kontakt</b><small>po sygnale</small></span>
+          </a>
+        </div>
+      </nav>
+    </section>
+
+
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

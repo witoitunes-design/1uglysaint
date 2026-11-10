@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>1uglysaint — Przymierzalnia · Sklep</title>
+  <meta name="description" content="Maski 1uglysaint: SINISTER, KROWN i NAILED. Obejrzyj każdą w 3D, zobacz na zdjęciu i przymierz na własnej twarzy — w przeglądarce, bez aplikacji.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta property="og:type" content="website"><meta property="og:site_name" content="1uglysaint">
+  <meta property="og:title" content="1uglysaint — Przymierzalnia"><meta property="og:description" content="Obejrzyj maski w 3D i przymierz je na własnej twarzy.">
+  <meta property="og:image" content="https://1uglysaint.online/assets/og-image.jpg"><meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/fonts/SaintSpire-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="pages.css?v=21">
+  <link rel="stylesheet" href="sklep.css?v=21">
+  <script>if (location.protocol === 'file:') document.write('<script src="assets/masks/offline.js"><\/script>');</script>
+  <script src="products.js?v=21" defer></script>
+  <script src="assets/masks/geo.js?v=21" defer></script>
+  <script src="script.js?v=21" defer></script>
+  <script src="atmos.js?v=21" defer></script>
+  <script src="pages.js?v=21" defer></script>
+  <script src="sala.js?v=21" defer></script>
+  <script src="sklep.js?v=21" defer></script>
+  <link rel="stylesheet" href="koszyk.css?v=21">
+</head>
+<body class="pg pg-sklep solo-sk" data-lamp="off">
+  <div class="px" aria-hidden="true"><canvas class="px-noise" width="160" height="90"></canvas><i class="px-line"></i><span class="px-label">UTRATA SYGNAŁU</span></div>
+  <header class="pn">
+    <a class="pn-logo" href="index.html" aria-label="1uglysaint — start"><img src="assets/1uglysaint-logo.svg" alt="1uglysaint"></a>
+    <nav class="pn-links" aria-label="Menu">
+      <a href="sklep.html">Sklep</a>
+      <a href="dziennik.html">Dziennik</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+    <button type="button" class="task-cart" data-modal="cart" aria-label="Otwórz koszyk"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14l-1.6 11H6.6z"/><path d="M9 9V7a3 3 0 0 1 6 0v2"/></svg> KOSZYK <b id="task-cart-count">0</b></button>
+  </header>
+
+  <main class="sk" id="main">
+    <!-- ================= SALA ================= -->
+    <section class="sala" id="sala" aria-label="Sala — wybrana maska w 3D">
+      <canvas class="sala-gl" id="sala-gl" aria-hidden="true"></canvas>
+      <img class="sala-still" id="sala-still" alt="" hidden>
+      <img class="sala-photo" id="sala-photo" alt="" decoding="async">
+      <div class="sala-anchor" id="sala-anchor" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="sala-labels" id="sala-labels" aria-hidden="true"></div>
+      <div class="sala-view mono" id="sala-view" role="group" aria-label="Widok maski" hidden>
+        <button type="button" data-v="3d" aria-pressed="true"><img id="sv-3d" alt=""><span>3D</span></button>
+        <button type="button" data-v="foto" aria-pressed="false"><img id="sv-foto" alt=""><span>FOTO</span></button>
+      </div>
+
+      <div class="sala-top mono"><div>
+        <p class="st-k"><span class="st-dot"></span>PRZYMIERZALNIA <span class="st-sep">/</span> 1uglysaint <span class="st-sep">/</span> <span id="st-count">03 MASKI</span></p>
+        <p class="st-tip"><span class="only-fine">Rusz kursorem — patrzy za światłem.</span><span class="only-touch">Przeciągnij po twarzy · w bok = następna</span></p></div>
+        <dl class="st-hud" aria-hidden="true">
+          <div><dt>OBRÓT</dt><dd id="hud-yaw">+00.0°</dd></div>
+          <div><dt>POCHYL.</dt><dd id="hud-pitch">+00.0°</dd></div>
+          <div><dt>ŚWIATŁO</dt><dd id="hud-lux">0.00</dd></div>
+          <div><dt>SIATKA</dt><dd id="hud-mesh">468 PKT</dd></div>
+        </dl>
+      </div>
+
+      <div class="sala-info">
+        <div class="si-left">
+          <p class="si-no mono"><span id="si-no">001</span><span class="si-of"> / <span id="si-of">003</span></span></p>
+          <h1 class="si-name" id="si-name" aria-live="polite">—</h1>
+          <p class="si-latin mono" id="si-latin"></p>
+          <p class="si-line" id="si-line"></p>
+        </div>
+        <div class="si-right">
+          <div class="si-price-row">
+            <p class="si-price" id="si-price">—</p>
+            <p class="si-status mono" id="si-status"></p>
+          </div>
+          <button type="button" class="btn-buy" id="si-buy"><span class="bb-t">DO KOSZYKA</span><span class="bb-p" id="si-buy-p"></span></button>
+          <button type="button" class="btn-try" id="si-try"><i class="rec" aria-hidden="true"></i><span>PRZYMIERZ NA SOBIE</span><small class="mono">KAMERA</small></button>
+          <div class="si-foot mono"><span class="si-priv">przymierzanie: kamera zostaje u ciebie</span></div>
+        </div>
+      </div>
+
+      <div class="sala-ctl">
+        <button type="button" class="sc-arrow prev" id="sc-prev" aria-label="Poprzednia maska"><span aria-hidden="true">←</span></button>
+        <nav class="sc-rail mono" id="sc-rail" aria-label="Wybierz maskę"><i class="sc-ind" id="sc-ind" aria-hidden="true"></i></nav>
+        <div class="sc-peek" id="sc-peek" aria-hidden="true"><img alt=""><p><b></b><span></span></p></div>
+        <button type="button" class="sc-arrow next" id="sc-next" aria-label="Następna maska"><span aria-hidden="true">→</span></button>
+      </div>
+
+      <button type="button" class="sh-gyro only-touch mono" id="sh-gyro" hidden>POCHYL TELEFON</button>
+      <p class="sala-keys mono only-fine" aria-hidden="true"><kbd>←</kbd><kbd>→</kbd> MASKI <span>·</span> <kbd>SPACJA</kbd> SKAN</p>
+      <div class="sala-hints mono" aria-hidden="true">
+        <button type="button" class="sh-scan" id="sh-scan"><i></i>SKAN<span class="only-fine"> 3D</span></button>
+      </div>
+    </section>
+
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

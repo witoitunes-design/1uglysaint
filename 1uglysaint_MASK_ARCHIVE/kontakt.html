@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>1uglysaint — Kontakt</title>
+  <meta name="description" content="Kontakt z 1uglysaint: zamówienia, pytania i wiadomości przez Instagram @1uglysaint. Ktoś do ciebie dzwoni.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta property="og:type" content="website"><meta property="og:site_name" content="1uglysaint">
+  <meta property="og:title" content="1uglysaint — Kontakt"><meta property="og:description" content="Ktoś do ciebie dzwoni. Odbierz.">
+  <meta property="og:image" content="https://1uglysaint.online/assets/og-image.jpg"><meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/fonts/SaintSpire-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="pages.css?v=21">
+  <link rel="stylesheet" href="kontakt.css?v=21">
+  <script src="products.js?v=21" defer></script>
+  <script src="script.js?v=21" defer></script>
+  <script src="atmos.js?v=21" defer></script>
+  <script src="pages.js?v=21" defer></script>
+  <script src="kontakt.js?v=21" defer></script>
+  <link rel="stylesheet" href="koszyk.css?v=21">
+</head>
+<body class="pg pg-kt" data-lamp="off">
+  <div class="px" aria-hidden="true"><canvas class="px-noise" width="160" height="90"></canvas><i class="px-line"></i><span class="px-label">UTRATA SYGNAŁU</span></div>
+  <header class="pn">
+    <a class="pn-logo" href="index.html" aria-label="1uglysaint — start"><img src="assets/1uglysaint-logo.svg" alt="1uglysaint"></a>
+    <nav class="pn-links" aria-label="Menu">
+      <a href="sklep.html">Sklep</a>
+      <a href="dziennik.html">Dziennik</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+    <button type="button" class="task-cart" data-modal="cart" aria-label="Otwórz koszyk"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14l-1.6 11H6.6z"/><path d="M9 9V7a3 3 0 0 1 6 0v2"/></svg> KOSZYK <b id="task-cart-count">0</b></button>
+  </header>
+
+  <main class="kt" id="main">
+    <div class="kt-glow" aria-hidden="true"></div>
+
+    <!-- plain contact, always visible -->
+    <section class="kt-info" aria-labelledby="kt-h">
+      <p class="ki-k mono"><i class="rec" aria-hidden="true"></i>KONTAKT <span>/</span> 1uglysaint</p>
+      <h1 class="ki-h" id="kt-h">Ktoś do ciebie<br><em>dzwoni.</em></h1>
+      <p class="ki-s">Odbierz — albo napisz wprost.</p>
+      <dl class="ki-lines mono">
+        <div><dt>INSTAGRAM</dt><dd><a id="ki-ig" target="_blank" rel="noopener">[ do uzupełnienia ]</a></dd></div>
+        <div><dt>ZAMÓWIENIE</dt><dd><button type="button" data-modal="cart">otwórz koszyk →</button></dd></div>
+      </dl>
+    </section>
+
+    <!-- the phone -->
+    <div class="phone" id="phone" data-state="idle" aria-live="polite">
+      <div class="ph-frame">
+        <i class="ph-cam" aria-hidden="true"></i>
+        <div class="ph-screen">
+          <div class="ph-status mono" aria-hidden="true"><span id="ph-clock">--:--</span><span class="ph-icons"><span class="ph-net">1US</span><i class="ph-bars"><b></b><b></b><b></b><b></b></i><i class="ph-batt"><b></b></i></span></div>
+
+          <!-- 1. ringing -->
+          <section class="ps ps-ring" aria-label="Połączenie przychodzące">
+            <p class="pr-k mono" id="pr-k">POŁĄCZENIE PRZYCHODZĄCE</p>
+            <div class="pr-photo"><i></i><i></i><i></i><img id="pr-img" alt=""></div>
+            <h2 class="pr-name">1uglysaint</h2>
+            <p class="pr-num mono" id="pr-num">numer zastrzeżony</p>
+            <div class="pr-btns">
+              <button type="button" class="pb pb-no" id="pb-no" aria-label="Odrzuć połączenie"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15.5c5.2-4.6 12.8-4.6 18 0l-2.4 2.6-3.6-1.4v-2.6c-2-.7-4-.7-6 0v2.6l-3.6 1.4z"/></svg><span>Odrzuć</span></button>
+              <button type="button" class="pb pb-yes" id="pb-yes" aria-label="Odbierz połączenie"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5 9.4 7 8 9.3c1.2 2.6 3.4 4.8 6 6l2.3-1.4 3.5 2.8-1.6 3c-8.3-.6-14.5-6.9-15-15.1z"/></svg><span>Odbierz</span></button>
+            </div>
+          </section>
+
+          <!-- 2. in call -->
+          <section class="ps ps-call" aria-label="Rozmowa">
+            <div class="pc-head"><img id="pc-img" alt=""><div><b>1uglysaint</b><span class="mono"><i class="rec"></i><span id="pc-time">00:00</span> · NAGRYWANIE</span></div></div>
+            <canvas class="pc-wave" id="pc-wave" aria-hidden="true"></canvas>
+            <div class="pc-lines" id="pc-lines"></div>
+            <div class="pc-menu" id="pc-menu" hidden>
+              <button type="button" data-k="1"><b>1</b>Chcę zamówić maskę</button>
+              <button type="button" data-k="2"><b>2</b>Mam pytanie</button>
+              <button type="button" data-k="3"><b>3</b>Coś innego</button>
+            </div>
+            <div class="pc-keys mono" id="pc-keys" aria-label="Klawiatura"></div>
+            <button type="button" class="pb pb-no pb-end" id="pb-end" aria-label="Rozłącz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15.5c5.2-4.6 12.8-4.6 18 0l-2.4 2.6-3.6-1.4v-2.6c-2-.7-4-.7-6 0v2.6l-3.6 1.4z"/></svg></button>
+          </section>
+
+          <!-- 3. the message -->
+          <section class="ps ps-msg" aria-label="Wiadomość">
+            <div class="pm-head"><button type="button" class="pm-back mono" id="pm-back" aria-label="Wróć do rozmowy">←</button><img id="pm-img" alt=""><div><b>1uglysaint</b><span class="mono">wiadomość · zostanie wysłana od ciebie</span></div></div>
+            <div class="pm-thread" id="pm-thread"></div>
+            <label class="pm-field"><span class="sr-only">Twoja wiadomość</span><textarea id="pm-text" rows="6" placeholder="Pisz, słucham…"></textarea></label>
+            <label class="pm-sign mono">PODPIS <input id="pm-name" type="text" autocomplete="name" placeholder="jak cię nazywać (opcjonalnie)"></label>
+            <div class="pm-send">
+              <button type="button" class="pm-btn solid" id="pm-ig" hidden>WYŚLIJ NA INSTAGRAMIE</button>
+              <button type="button" class="pm-btn" id="pm-copy">KOPIUJ</button>
+            </div>
+            <p class="pm-note mono" id="pm-note" hidden>[ kontakt do uzupełnienia — na razie kopiuj ]</p>
+          </section>
+
+          <!-- 4. after -->
+          <section class="ps ps-end" aria-label="Koniec połączenia">
+            <p class="pe-k mono" id="pe-k">POŁĄCZENIE ZAKOŃCZONE</p>
+            <p class="pe-time mono" id="pe-time">00:00</p>
+            <h2 class="pe-h" id="pe-h">Odpiszemy.</h2>
+            <p class="pe-p" id="pe-p"></p>
+            <div class="pe-btns">
+              <button type="button" class="pm-btn solid" id="pe-again">ZADZWOŃ PONOWNIE</button>
+              <button type="button" class="pm-btn" id="pe-write">NAPISZ</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

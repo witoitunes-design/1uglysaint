@@ -1,0 +1,3 @@
+MediaPipe Face Mesh (@mediapipe/face_mesh 0.4.1633559619) — Copyright Google LLC.
+Licensed under the Apache License, Version 2.0: https://www.apache.org/licenses/LICENSE-2.0
+Files in this folder are unmodified copies from the npm package. Used by lustro.js (the try-on mirror).
